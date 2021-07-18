@@ -1,9 +1,9 @@
 public class MainClass
 {
-    public int getClassNumber()
+    public String getClassString()
     {
-        return class_number;
+        return class_string;
     }
 
-    private int class_number = 20;
+    private String class_string = "Hello, world";
 }
