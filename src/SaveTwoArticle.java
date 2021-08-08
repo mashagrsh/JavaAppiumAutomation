@@ -43,39 +43,50 @@ public class SaveTwoArticle {
     @Test
     public void saveTwoArticleAndDeleteOneOfThem()
     {
+        String search_input_on_main_page = "Search Wikipedia";
+        String search_text_input = "Search…";
+        String search_line = "Java";
+        String name_of_folder = "Learning programming";
+        String article_with_java = "Java (programming language)";
+        String article_with_javascript = "JavaScript";
+
+        String more_options_locator = "//android.widget.ImageView[@content-desc='More options']";
+        String add_to_list_locator = "//*[@text='Add to reading list']";
+        String x_link_locator = "//android.widget.ImageButton[@content-desc='Navigate up']";
+
         waitForElementAndClick(
-                By.xpath("//*[contains(@text,'Search Wikipedia')]"),
-                "Cannot find search 'Search Wikipedia' input",
+                By.xpath("//*[contains(@text,'"+ search_input_on_main_page +"')]"),
+                "Cannot find input with " + search_input_on_main_page,
                 5
             );
 
         waitForElementAndSendKeys(
-                By.xpath("//*[contains(@text,'Search…')]"),
-                "Java",
-                "Cannot find search input",
+                By.xpath("//*[contains(@text,'"+ search_text_input +"')]"),
+                search_line,
+                "Cannot find input with " + search_text_input,
                 5
             );
 
         waitForElementAndClick(
                 By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='Object-oriented programming language']"),
-                "Cannot find topic search by Java",
+                "Cannot find topic search " + search_line,
                 5
             );
 
         waitForElementPresent(
                 By.id("org.wikipedia:id/view_page_title_text"),
-                "Cannot find article with title 'Object-oriented programming language'",
+                "Cannot find article with title " + article_with_java,
                 15
             );
 
         waitForElementAndClick(
-                By.xpath("//android.widget.ImageView[@content-desc='More options']"),
+                By.xpath(more_options_locator),
                 "Cannot find button 'More options'",
                 5
             );
 
         waitForElementAndClick(
-                By.xpath("//*[@text='Add to reading list']"),
+                By.xpath(add_to_list_locator),
                 "Cannot find button 'Add to reading list'",
                 5
             );
@@ -89,16 +100,14 @@ public class SaveTwoArticle {
         waitForElementAndClear(
                 By.id("org.wikipedia:id/text_input"),
                 "Cannot find text input",
-                1
+                5
             );
-
-        String name_of_folder = "Learning programming";
 
         waitForElementAndSendKeys(
                 By.id("org.wikipedia:id/text_input"),
                 name_of_folder,
                 "Cannot put text into article input",
-                1
+                5
             );
 
         waitForElementAndClick(
@@ -108,56 +117,56 @@ public class SaveTwoArticle {
             );
 
         waitForElementAndClick(
-                By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']"),
+                By.xpath(x_link_locator),
                 "Cannot close article, cannot find X link",
                 5
             );
 
         waitForElementAndClick(
-                By.xpath("//*[contains(@text,'Search Wikipedia')]"),
-                "Cannot find search 'Search Wikipedia' input",
+                By.xpath("//*[contains(@text,'"+ search_input_on_main_page +"')]"),
+                "Cannot find input with " + search_input_on_main_page,
                 5
         );
 
         waitForElementAndSendKeys(
-                By.xpath("//*[contains(@text,'Search…')]"),
-                "Java",
-                "Cannot find search input",
+                By.xpath("//*[contains(@text,'"+ search_text_input +"')]"),
+                search_line,
+                "Cannot find input with " + search_text_input,
                 5
         );
 
         waitForElementAndClick(
                 By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='Programming language']"),
-                "Cannot find topic search by Java",
+                "Cannot find topic search " + search_line,
                 5
         );
 
         waitForElementPresent(
                 By.id("org.wikipedia:id/view_page_title_text"),
-                "Cannot find article title 'Programming language'",
+                "Cannot find article title " + article_with_javascript,
                 15
         );
 
         waitForElementAndClick(
-                By.xpath("//android.widget.ImageView[@content-desc='More options']"),
+                By.xpath(more_options_locator),
                 "Cannot find button 'More options'",
                 5
         );
 
         waitForElementAndClick(
-                By.xpath("//*[@text='Add to reading list']"),
+                By.xpath(add_to_list_locator),
                 "Cannot find button 'Add to reading list'",
                 5
         );
 
         waitForElementAndClick(
-                By.xpath("//*[@text='" + name_of_folder + "']"),
-                "Cannot find list 'Learning programming'",
+                By.xpath("//*[@text='"+ name_of_folder +"']"),
+                "Cannot find list " + name_of_folder,
                 5
         );
 
         waitForElementAndClick(
-                By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']"),
+                By.xpath(x_link_locator),
                 "Cannot close article, cannot find X link",
                 5
         );
@@ -169,25 +178,25 @@ public class SaveTwoArticle {
             );
 
         waitForElementAndClick(
-                By.xpath("//*[@text='" + name_of_folder + "']"),
-                "Cannot find 'Learning programming' list",
+                By.xpath("//*[@text='"+ name_of_folder +"']"),
+                "Cannot find " + name_of_folder + " list",
                 5
-            );
+        );
 
         swipeElementToLeft(
-                By.xpath("//*[@text='Java (programming language)']"),
-                "Cannot find saved article 'Java (programming language)'"
-            );
+                By.xpath("//*[@text='"+ article_with_java +"']"),
+                "Cannot find saved article " + article_with_java
+        );
 
         waitForElementNotPresent(
-                By.xpath("//*[@text='Java (programming language)']"),
-                "Cannot delete saved article 'Java (programming language)'",
+                By.xpath("//*[@text='"+ article_with_java +"']"),
+                "Cannot delete saved article " + article_with_java,
                 5
-            );
+        );
 
         waitForElementPresent(
-                By.id("//*[@text='JavaScript']"),
-                "Cannot find article title 'JavaScript'",
+                By.xpath("//*[@text='"+ article_with_javascript +"']"),
+                "Cannot find article title " + article_with_javascript,
                 15
         );
     }
@@ -210,7 +219,7 @@ public class SaveTwoArticle {
 
     private WebElement waitForElementAndSendKeys(By by, String value, String error_message, long timeoutInSeconds)
     {
-        WebElement element = waitForElementPresent(by, error_message, 1);
+        WebElement element = waitForElementPresent(by, error_message, 5);
         element.sendKeys(value);
         return element;
     }
@@ -226,7 +235,7 @@ public class SaveTwoArticle {
 
     private WebElement waitForElementAndClear(By by, String error_message, long timeoutInSeconds)
     {
-        WebElement element = waitForElementPresent(by, error_message, 1);
+        WebElement element = waitForElementPresent(by, error_message, 5);
         element.clear();
         return element;
     }
