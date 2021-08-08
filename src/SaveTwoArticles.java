@@ -201,7 +201,7 @@ public class SaveTwoArticles {
         );
 
         waitForElementPresent(
-                By.id("//*[@resource-id='org.wikipedia:id/view_page_title_text']//*[@text='"+ article_with_javascript +"']"),
+                By.xpath("//*[@resource-id='org.wikipedia:id/view_page_title_text']//*[@text='"+ article_with_javascript +"']"),
                 "The title of article is not " + article_with_javascript,
                 15
         );
