@@ -82,13 +82,13 @@ public class CreatingMethodWithAssert {
         return element;
     }
 	
-	private void WebElement assertElementHasText(WebElement element, String search_text, String error_message)
+    private void WebElement assertElementHasText(WebElement element, String search_text, String error_message)
     {
-		String actual_text = element.getAttribute("text");
-		if (actual_text.equals(search_text)){
+	String actual_text = element.getAttribute("text");
+	if (actual_text.equals(search_text)){
             Assert.assertTrue(true);
         } else {
             Assert.fail("There is no expected text");
-		}
+	}
     }
 }
