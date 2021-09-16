@@ -4,20 +4,20 @@ import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class ArticlePageObject extends MainPageObject {
+abstract public class ArticlePageObject extends MainPageObject {
 
-    private static final String
-            TITLE = "org.wikipedia:id/view_page_title_text",
-            FOOTER_ELEMENT = "//*[@text='View page in browser']",
-            OPTIONS_BUTTON = "//android.widget.ImageView[@content-desc='More options']",
-            OPTIONS_ADD_TO_MY_LIST_BUTTON = "//*[@text='Add to reading list']",
-            ADD_TO_MY_LIST_OVERLAY = "org.wikipedia:id/onboarding_button",
-            MY_LIST_NAME_INPUT = "org.wikipedia:id/text_input",
-            MY_LIST_OK_BUTTON = "//*[@text='OK']",
-            CLOSE_ARTICLE_BUTTON = "//android.widget.ImageButton[@content-desc='Navigate up']",
-            TITLE_WITH_NAME_TPL = "//*[@text='(TITLE)']",
-            MY_LIST_NAME = "//*[@text='Learning programming']",
-            HEADER = "org.wikipedia:id/page_header_view";
+     protected static String
+            TITLE,
+            FOOTER_ELEMENT,
+            OPTIONS_BUTTON,
+            OPTIONS_ADD_TO_MY_LIST_BUTTON,
+            ADD_TO_MY_LIST_OVERLAY,
+            MY_LIST_NAME_INPUT,
+            MY_LIST_OK_BUTTON,
+            CLOSE_ARTICLE_BUTTON,
+            TITLE_WITH_NAME_TPL,
+            MY_LIST_NAME,
+            HEADER;
 
 
     public ArticlePageObject (AppiumDriver driver)
